@@ -178,6 +178,7 @@
       
       // Inicia a criação dos corações flutuantes apenas após abrir
       startFloatingHearts();
+      iniciarTemporizador();
       
       // Garante que o overlay desaparece da frente dos cliques
       setTimeout(() => {
@@ -252,8 +253,6 @@
       if (diferenca > 40) nextImage(); // Desliza p/ esquerda
       if (diferenca < -40) prevImage(); // Desliza p/ direita
     }
-
-    iniciarTemporizador();
 
     // ==========================================
     // ⏱️ CONTADOR DE TEMPO (05/Nov/2023)
