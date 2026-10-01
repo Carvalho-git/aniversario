@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juntos há 3 Anos</title>
+  
+  <!-- Importar fonte romântica para os nomes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Estilos e Animações CSS -->
+  <style>
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+    .heart-glow {
+      animation: heartbeat 1.6s infinite ease-in-out;
+      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.75));
+    }
+    .fade-transition {
+      transition: opacity 0.4s ease-in-out;
+    }
+    .fonte-nomes {
+      font-family: 'Dancing Script', cursive;
+    }
+  </style>
+</head>
+
+<body class="bg-[#0b131b] text-white min-h-screen flex items-center justify-center p-4 font-sans select-none pb-12">
+
+  <main class="w-full max-w-sm flex flex-col items-center py-6">
+
+    <!-- Moldura da Foto com Carrossel -->
+    <div id="carousel-container" class="relative w-full aspect-[4/5] rounded-[2.2rem] overflow-hidden shadow-2xl border border-white/5 bg-slate-900 mb-8 group">
+      
+      <!-- Imagem Principal -->
+      <img 
+        id="carousel-img"
+        src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop" 
+        alt="Nós" 
+        class="w-full h-full object-cover fade-transition opacity-100" 
+      />
+
+      <!-- Botão Anterior -->
+      <button onclick="prevImage()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-sm transition-all opacity-80 hover:opacity-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 pr-0.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      
+      <!-- Botão Seguinte -->
+      <button onclick="nextImage()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-sm transition-all opacity-80 hover:opacity-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 pl-0.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+      
+      <!-- Indicador de quantas fotos faltam -->
+      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-xs text-white/90 font-medium tracking-wide z-10">
+        <span id="photo-counter">1 / 14</span>
+      </div>
+    </div>
+
+    <!-- Título do Contador -->
+    <p class="text-slate-300 text-sm font-medium tracking-wide mb-3 uppercase text-center">
+      Juntos há
+    </p>
+
+    <!-- Linhas do Contador -->
+    <div class="text-center space-y-1 text-slate-100 text-[1.1rem] tracking-tight">
+      <p id="line1" class="font-normal"></p>
+      <p id="line2" class="font-normal"></p>
+    </div>
+
+    <!-- Coração e Linha divisória -->
+    <div class="mt-6 flex flex-col items-center w-full mb-8">
+      <span class="text-3xl text-red-500 heart-glow cursor-default">❤️</span>
+    </div>
+
+    <div class="w-full flex flex-col items-center px-4">
+      
+      <!-- Barra Divisória Elegante -->
+      <div class="flex items-center w-full justify-center gap-3 mb-6">
+        <div class="h-[1.5px] w-24 bg-gradient-to-r from-transparent to-red-500/70"></div>
+        <span class="text-red-500/80 text-sm">✦</span>
+        <div class="h-[1.5px] w-24 bg-gradient-to-l from-transparent to-red-500/70"></div>
+      </div>
+
+      <!-- Nomes (AQUI PODES MUDAR PARA OS VOSSOS NOMES) -->
+      <h1 class="text-[3.2rem] text-red-500/90 fonte-nomes mb-5 drop-shadow-md tracking-wide">
+        Juliana & Rafael
+      </h1>
+
+      <!-- Texto Personalizado -->
+      <p class="text-slate-300 text-sm text-center leading-relaxed">
+        Três anos ao teu lado parecem ter passado num piscar de olhos, mas guardam memórias para uma vida inteira. 
+        És a minha melhor parte, o meu porto seguro e o sorriso que procuro todos os dias. 
+        Que venham muitos mais anos, porque o nosso "para sempre" está apenas a começar. 
+        Amo-te! ❤️
+      </p>
+      
+    </div>
+
+  </main>
+
+  <script>
+    // ==========================================
+    // 📸 CARROSSEL DE FOTOS
+    // ==========================================
+    
+    // Arrays de 15 imagens do Unsplash como placeholder (Substitui pelos teus ficheiros depois)
+    const imagens = [
+        "foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg", "foto5.jpg",
+        "foto6.jpg", "foto7.jpg", "foto8.jpg", "foto9.jpg", "foto10.jpg",
+        "foto11.jpg", "foto12.jpg", "foto13.jpg", "foto14.jpg", "foto15.jpg"
+    ];
+    
+    let indexAtual = 0;
+    const imgElement = document.getElementById('carousel-img');
+    const counterElement = document.getElementById('photo-counter');
+    let intervaloCarrossel;
+
+    function atualizarImagem() {
+      // Fade out
+      imgElement.classList.replace('opacity-100', 'opacity-0');
+      
+      setTimeout(() => {
+        // Troca a imagem
+        imgElement.src = imagens[indexAtual];
+        // Atualiza contador
+        counterElement.innerText = (indexAtual + 1) + " / " + imagens.length;
+        // Fade in
+        imgElement.classList.replace('opacity-0', 'opacity-100');
+      }, 400); // 400ms para a transição ser suave
+    }
+
+    function nextImage() {
+      indexAtual = (indexAtual + 1) % imagens.length;
+      atualizarImagem();
+      resetarTemporizador();
+    }
+
+    function prevImage() {
+      indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
+      atualizarImagem();
+      resetarTemporizador();
+    }
+
+    function iniciarTemporizador() {
+      // Muda a imagem a cada 5 segundos
+      intervaloCarrossel = setInterval(nextImage, 5000);
+    }
+
+    function resetarTemporizador() {
+      clearInterval(intervaloCarrossel);
+      iniciarTemporizador();
+    }
+
+    // Swipe no Telemóvel
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const container = document.getElementById('carousel-container');
+
+    container.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    container.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+      const diferenca = touchStartX - touchEndX;
+      if (diferenca > 40) nextImage(); // Deslizar à esquerda
+      if (diferenca < -40) prevImage(); // Deslizar à direita
+    }
+
+    // Iniciar logo
+    iniciarTemporizador();
+
+    // ==========================================
+    // ⏱️ CONTADOR DE TEMPO
+    // ==========================================
+    
+    // DATA DO ANIVERSÁRIO: 5 de Novembro de 2023 
+    // Janeiro = 0, Novembro = 10
+    const START_DATE = new Date(2023, 10, 5, 0, 0, 0);
+
+    function updateCounter() {
+      const now = new Date();
+      
+      let years = now.getFullYear() - START_DATE.getFullYear();
+      let months = now.getMonth() - START_DATE.getMonth();
+      let days = now.getDate() - START_DATE.getDate();
+      let hours = now.getHours() - START_DATE.getHours();
+      let minutes = now.getMinutes() - START_DATE.getMinutes();
+      let seconds = now.getSeconds() - START_DATE.getSeconds();
+
+      // Ajustes matemáticos
+      if (seconds < 0) { seconds += 60; minutes--; }
+      if (minutes < 0) { minutes += 60; hours--; }
+      if (hours < 0) { hours += 24; days--; }
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+      }
+      if (months < 0) { months += 12; years--; }
+
+      const yLabel = years === 1 ? 'ano' : 'anos';
+      const mLabel = months === 1 ? 'mês' : 'meses';
+      const dLabel = days === 1 ? 'dia' : 'dias';
+      const hLabel = hours === 1 ? 'hora' : 'horas';
+      const minLabel = minutes === 1 ? 'minuto' : 'minutos';
+      const sLabel = seconds === 1 ? 'segundo' : 'segundos';
+
+      document.getElementById('line1').innerHTML = 
+        '<strong class="font-semibold text-white">' + years + '</strong> <span class="text-slate-400">' + yLabel + '</span>, <strong class="font-semibold text-white">' + months + '</strong> <span class="text-slate-400">' + mLabel + '</span>, <strong class="font-semibold text-white">' + days + '</strong> <span class="text-slate-400">' + dLabel + '</span>,';
+      
+      document.getElementById('line2').innerHTML = 
+        '<strong class="font-semibold text-white">' + hours + '</strong> <span class="text-slate-400">' + hLabel + '</span>, <strong class="font-semibold text-white">' + minutes + '</strong> <span class="text-slate-400">' + minLabel + '</span>, <strong class="font-semibold text-white">' + seconds + '</strong> <span class="text-slate-400">' + sLabel + '</span>';
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
