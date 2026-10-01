@@ -34,32 +34,20 @@
 
 <body class="bg-[#0b131b] text-white min-h-screen flex items-center justify-center p-4 font-sans select-none pb-12">
 
-  <main class="w-full max-w-sm flex flex-col items-center py-6">
+  <!-- Aumentei o max-w para ficar mais largo no ecrã (max-w-md em vez de max-w-sm) -->
+  <main class="w-full max-w-md flex flex-col items-center py-6">
 
-    <!-- Moldura da Foto com Carrossel -->
-    <div id="carousel-container" class="relative w-full aspect-[4/5] rounded-[2.2rem] overflow-hidden shadow-2xl border border-white/5 bg-slate-900 mb-8 group">
+    <!-- Moldura da Foto com Carrossel (Agora 'aspect-square' para ser mais larga para os lados) -->
+    <div id="carousel-container" class="relative w-full aspect-square rounded-[2.2rem] overflow-hidden shadow-2xl border border-white/5 bg-slate-900 mb-8 group">
       
       <!-- Imagem Principal -->
       <img 
         id="carousel-img"
-        src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop" 
+        src="imagens/foto1.jpg" 
         alt="Nós" 
-        class="w-full h-full object-cover fade-transition opacity-100" 
+        class="w-full h-full object-cover fade-transition opacity-100"
+        onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop'" 
       />
-
-      <!-- Botão Anterior -->
-      <button onclick="prevImage()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-sm transition-all opacity-80 hover:opacity-100 z-10">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 pr-0.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      </button>
-      
-      <!-- Botão Seguinte -->
-      <button onclick="nextImage()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-sm transition-all opacity-80 hover:opacity-100 z-10">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 pl-0.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      </button>
       
       <!-- Indicador de quantas fotos faltam -->
       <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-xs text-white/90 font-medium tracking-wide z-10">
@@ -92,9 +80,9 @@
         <div class="h-[1.5px] w-24 bg-gradient-to-l from-transparent to-red-500/70"></div>
       </div>
 
-      <!-- Nomes (AQUI PODES MUDAR PARA OS VOSSOS NOMES) -->
+      <!-- Nomes -->
       <h1 class="text-[3.2rem] text-red-500/90 fonte-nomes mb-5 drop-shadow-md tracking-wide">
-        Juliana & Rafael
+        EU & TU
       </h1>
 
       <!-- Texto Personalizado -->
@@ -111,14 +99,24 @@
 
   <script>
     // ==========================================
-    // 📸 CARROSSEL DE FOTOS
+    // 📸 CARROSSEL DE FOTOS (Agora com 15 fotos)
     // ==========================================
-    
-    // Arrays de 15 imagens do Unsplash como placeholder (Substitui pelos teus ficheiros depois)
     const imagens = [
-      "imagens/foto1.jpg", "imagens/foto2.jpg", "imagens/foto3.jpg", "imagens/foto4.jpg", "imagens/foto5.jpg",
-      "imagens/foto6.jpg", "imagens/foto7.jpg", "imagens/foto8.jpg", "imagens/foto9.jpg", "imagens/foto10.jpg",
-      "imagens/foto11.jpg", "imagens/foto12.jpg", "imagens/foto13.jpg", "imagens/foto14.jpg"
+      "imagens/foto1.jpg", 
+      "imagens/foto2.jpg", 
+      "imagens/foto3.jpg",
+      "imagens/foto4.jpg", 
+      "imagens/foto5.jpg", 
+      "imagens/foto6.jpg",
+      "imagens/foto7.jpg", 
+      "imagens/foto8.jpg", 
+      "imagens/foto9.jpg",
+      "imagens/foto10.jpg", 
+      "imagens/foto11.jpg", 
+      "imagens/foto12.jpg",
+      "imagens/foto13.jpg", 
+      "imagens/foto14.jpg",
+      "imagens/foto15.jpg"
     ];
     
     let indexAtual = 0;
@@ -162,7 +160,9 @@
       iniciarTemporizador();
     }
 
-    // Swipe no Telemóvel
+    // ==========================================
+    // 👆 SWIPE NO TELEMÓVEL (Deslizar para o lado)
+    // ==========================================
     let touchStartX = 0;
     let touchEndX = 0;
     const container = document.getElementById('carousel-container');
@@ -178,8 +178,9 @@
 
     function handleSwipe() {
       const diferenca = touchStartX - touchEndX;
-      if (diferenca > 40) nextImage(); // Deslizar à esquerda
-      if (diferenca < -40) prevImage(); // Deslizar à direita
+      // Ajustei a sensibilidade para 40px
+      if (diferenca > 40) nextImage(); // Deslizar à esquerda (próxima foto)
+      if (diferenca < -40) prevImage(); // Deslizar à direita (foto anterior)
     }
 
     // Iniciar logo
@@ -188,9 +189,6 @@
     // ==========================================
     // ⏱️ CONTADOR DE TEMPO
     // ==========================================
-    
-    // DATA DO ANIVERSÁRIO: 5 de Novembro de 2023 
-    // Janeiro = 0, Novembro = 10
     const START_DATE = new Date(2023, 10, 5, 0, 0, 0);
 
     function updateCounter() {
@@ -203,7 +201,6 @@
       let minutes = now.getMinutes() - START_DATE.getMinutes();
       let seconds = now.getSeconds() - START_DATE.getSeconds();
 
-      // Ajustes matemáticos
       if (seconds < 0) { seconds += 60; minutes--; }
       if (minutes < 0) { minutes += 60; hours--; }
       if (hours < 0) { hours += 24; days--; }
