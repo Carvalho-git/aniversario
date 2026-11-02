@@ -1,335 +1,323 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juntos há 3 Anos</title>
-  
-  <!-- Importar fonte romântica para os nomes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <style>
-    /* Animação do coração a bater */
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.18); }
-    }
-    .heart-glow {
-      animation: heartbeat 1.6s infinite ease-in-out;
-      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.75));
-    }
-    
-    /* Transições de imagens e overlays */
-    .fade-transition {
-      transition: opacity 0.4s ease-in-out;
-    }
-    .fade-out-long {
-      transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
-    }
-    
-    /* Fonte dos nomes */
-    .fonte-nomes {
-      font-family: 'Dancing Script', cursive;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juntos há 3 Anos</title>
+  
+  <!-- Importar fonte romântica para os nomes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* Animação do coração a bater */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+    .heart-glow {
+      animation: heartbeat 1.6s infinite ease-in-out;
+      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.75));
+    }
+    
+    /* Transições de imagens e overlays */
+    .fade-transition {
+      transition: opacity 0.4s ease-in-out;
+    }
+    .fade-out-long {
+      transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    }
+    
+    /* Fonte dos nomes */
+    .fonte-nomes {
+      font-family: 'Dancing Script', cursive;
+    }
 
-    /* Animação dos Corações Flutuantes no fundo */
-    .floating-heart {
-      position: fixed;
-      bottom: -10vh;
-      font-size: 1.5rem;
-      animation: float-up linear forwards;
-      pointer-events: none; /* Para não interferir com o swipe das fotos */
-      z-index: 0;
-      opacity: 0;
-    }
-    @keyframes float-up {
-      0% { transform: translateY(0) scale(0.8); opacity: 0; }
-      10% { opacity: 0.4; }
-      90% { opacity: 0.4; }
-      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
-    }
-  </style>
+    /* Animação dos Corações Flutuantes no fundo */
+    .floating-heart {
+      position: fixed;
+      bottom: -10vh;
+      font-size: 1.5rem;
+      animation: float-up linear forwards;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(0) scale(0.8); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+  </style>
 </head>
 
 <body class="bg-[#0b131b] text-white min-h-screen flex flex-col items-center justify-center p-4 font-sans select-none pb-12 relative overflow-x-hidden">
 
-  <!-- OVERLAY INICIAL (Ecrã de Boas-Vindas) -->
-  <div id="start-overlay" class="fixed inset-0 bg-[#0b131b] z-50 flex flex-col items-center justify-center p-6 text-center fade-out-long">
-    <div class="space-y-6 max-w-sm">
-      <h2 class="text-3xl text-slate-200 font-light tracking-wide mb-8">Para o meu mozão</h2>
-      <button id="btn-start" class="group relative px-8 py-4 bg-red-600/10 hover:bg-red-600/20 border border-red-500/30 rounded-2xl text-red-400 text-lg font-medium tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.1)] hover:shadow-[0_0_30px_rgba(239,68,68,0.25)] hover:-translate-y-1">
-        Clica para abrir a tua surpresa 💌
-      </button>
-    </div>
-  </div>
+  <!-- OVERLAY INICIAL (Ecrã de Boas-Vindas Simples e Elegante) -->
+  <div id="start-overlay" class="fixed inset-0 bg-[#0b131b] z-50 flex flex-col items-center justify-center p-6 text-center fade-out-long">
+    <div class="space-y-6 max-w-sm">
+      <h2 class="text-3xl text-slate-200 font-light tracking-wide mb-8">Para o meu mozão</h2>
+      <button id="btn-start" class="group relative px-8 py-4 bg-red-600/10 hover:bg-red-600/20 border border-red-500/30 rounded-2xl text-red-400 text-lg font-medium tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.1)] hover:shadow-[0_0_30px_rgba(239,68,68,0.25)] hover:-translate-y-1">
+        Clica para abrir a tua surpresa 💌
+      </button>
+    </div>
+  </div>
 
-  <!-- Áudio Oculto -->
-  <audio id="bg-music" loop preload="auto">
-    <!-- ATENÇÃO: Coloca o ficheiro musica.mp3 na mesma pasta que este HTML -->
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Áudio Oculto -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- Contentor para os corações flutuantes serem injetados pelo JS -->
-  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+  <!-- Contentor para os corações flutuantes serem injetados pelo JS -->
+  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-  <!-- CONTEÚDO PRINCIPAL (Fica por baixo e revela-se) -->
-  <main class="w-full max-w-md flex flex-col items-center py-6 relative z-10">
+  <!-- CONTEÚDO PRINCIPAL (Fica por baixo e revela-se) -->
+  <main class="w-full max-w-md flex flex-col items-center py-6 relative z-10">
 
-    <!-- Moldura da Foto com Carrossel (aspect-square) -->
-    <div id="carousel-container" class="relative w-full aspect-[4/5] rounded-[2.2rem] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 bg-slate-900 mb-8 group touch-pan-y">
-      
-      <!-- Imagem Principal -->
-      <img 
-        id="carousel-img"
-        src="imagens/foto1.jpg" 
-        alt="Nós" 
-        class="w-full h-full object-cover fade-transition opacity-100"
-        onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop'" 
-      />
-      
-      <!-- Indicador de quantas fotos faltam -->
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs text-white/90 font-medium tracking-wide z-10">
-        <span id="photo-counter">1 / 15</span>
-      </div>
-    </div>
+    <!-- Moldura da Foto com Carrossel (aspect-[4/5]) -->
+    <div id="carousel-container" class="relative w-full aspect-[4/5] rounded-[2.2rem] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/5 bg-slate-900 mb-8 group touch-pan-y">
+      
+      <!-- Imagem Principal -->
+      <img 
+        id="carousel-img"
+        src="imagens/foto1.jpg" 
+        alt="Nós" 
+        class="w-full h-full object-cover fade-transition opacity-100"
+        onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop'" 
+      />
+      
+      <!-- Indicador de quantas fotos faltam -->
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs text-white/90 font-medium tracking-wide z-10">
+        <span id="photo-counter">1 / 15</span>
+      </div>
+    </div>
 
-    <!-- Título do Contador -->
-    <p class="text-slate-300 text-sm font-medium tracking-wide mb-3 uppercase text-center drop-shadow-md">
-      Juntos há
-    </p>
+    <!-- Título do Contador -->
+    <p class="text-slate-300 text-sm font-medium tracking-wide mb-3 uppercase text-center drop-shadow-md">
+      Juntos há
+    </p>
 
-    <!-- Linhas do Contador -->
-    <div class="text-center space-y-1.5 text-slate-100 text-[1.1rem] tracking-tight drop-shadow-md">
-      <p id="line1" class="font-normal"></p>
-      <p id="line2" class="font-normal"></p>
-    </div>
+    <!-- Linhas do Contador -->
+    <div class="text-center space-y-1.5 text-slate-100 text-[1.1rem] tracking-tight drop-shadow-md">
+      <p id="line1" class="font-normal"></p>
+      <p id="line2" class="font-normal"></p>
+    </div>
 
-    <!-- Coração e Linha divisória -->
-    <div class="mt-8 flex flex-col items-center w-full mb-8">
-      <span class="text-3xl text-red-500 heart-glow cursor-default">💗</span>
-    </div>
+    <!-- Coração e Linha divisória -->
+    <div class="mt-8 flex flex-col items-center w-full mb-8">
+      <span class="text-3xl text-red-500 heart-glow cursor-default">💗</span>
+    </div>
 
-    <div class="w-full flex flex-col items-center px-4 relative z-10">
-      
-      <!-- Barra Divisória Elegante -->
-      <div class="flex items-center w-full justify-center gap-3 mb-6">
-        <div class="h-[1.5px] w-24 bg-gradient-to-r from-transparent to-red-500/70"></div>
-        <span class="text-red-500/80 text-sm">✦</span>
-        <div class="h-[1.5px] w-24 bg-gradient-to-l from-transparent to-red-500/70"></div>
-      </div>
+    <div class="w-full flex flex-col items-center px-4 relative z-10">
+      
+      <!-- Barra Divisória Elegante -->
+      <div class="flex items-center w-full justify-center gap-3 mb-6">
+        <div class="h-[1.5px] w-24 bg-gradient-to-r from-transparent to-red-500/70"></div>
+        <span class="text-red-500/80 text-sm">✦</span>
+        <div class="h-[1.5px] w-24 bg-gradient-to-l from-transparent to-red-500/70"></div>
+      </div>
 
-      <!-- Nomes -->
-      <h1 class="text-[2.9rem] text-red-500/90 fonte-nomes mb-6 drop-shadow-[0_2px_10px_rgba(239,68,68,0.2)] tracking-wide">
-        Juliana & Rafael
-      </h1>
+      <!-- Nomes -->
+      <h1 class="text-[2.9rem] text-red-500/90 fonte-nomes mb-6 drop-shadow-[0_2px_10px_rgba(239,68,68,0.2)] tracking-wide">
+        Juliana & Rafael
+      </h1>
 
-      <!-- Texto Personalizado com Parágrafos Separados -->
-      <div class="space-y-5 text-slate-300 text-[0.95rem] text-center leading-relaxed">
-        <p>
-          Três anos. Às vezes parece que foi ontem que tudo começou, e outras vezes parece que sempre estiveste na minha vida.
-        </p>
-        <p>
-          Quando penso nestes três anos, não são só os momentos grandes que me vêm à cabeça. 
-          Os pequenos detalhes: as nossas conversas, as gargalhadas por coisas que mais ninguém entenderia, a forma como me olhas quando achas que eu não estou a ver. 
-          É aí que percebo o quanto me fazes feliz.
-        </p>
-        <p>
-          Obrigado por estares sempre ao meu lado. Nos dias bons, em que tudo corre bem, e sobretudo nos dias maus, em que eu próprio tenho dificuldade em ser fácil. 
-          Tu aguentaste a pressão, os horários, as ausências e o cansaço, e nunca me fizeste sentir que era demais. Muitas vezes só consegui continuar porque sabia que tu estavas lá.
-        </p>
-        <p>
-          Contigo aprendi que o amor é uma construção diária que se vai aprimorando com o passar do tempo, onde cada momento que compartilhamos é único e precioso. 
-          Fizeste de mim uma pessoa melhor, e isso é algo que nunca vou conseguir agradecer o suficiente.
-        </p>
-        <p>
-          Estes três anos foram só o princípio. Quero continuar a construir contigo, a viajar contigo, a crescer contigo, e a tornar cada ano melhor que o anterior.
-        </p>
-        <p>
-          Obrigado por seres a minha casa, a minha calma e a minha melhor companheira.
-        </p>
-        <p>
-          Feliz aniversário de namoro, meu amor. Amo-te hoje mais do que ontem, e menos do que amanhã. 💗
-        </p>
-        <p>
-          "Out of all the people this world has created, with all the roads I could have taken, and all the lives I could have lived, some impossible miracle of timing allowed my story to cross paths with yours. 
-          And if I spend the rest of my life searching for a word greater than lucky, I still don't think it would be enough to explain what you are to me."
-        </p>
-      </div>
-    </div>
+      <!-- Texto Personalizado com Parágrafos Separados -->
+      <div class="space-y-5 text-slate-300 text-[0.95rem] text-center leading-relaxed">
+        <p>
+          Três anos. Às vezes parece que foi ontem que tudo começou, e outras vezes parece que sempre estiveste na minha vida.
+        </p>
+        <p>
+          Quando penso nestes três anos, não são só os momentos grandes que me vêm à cabeça. 
+          Os pequenos detalhes: as nossas conversas, as gargalhadas por coisas que mais ninguém entenderia, a forma como me olhas quando achas que eu não estou a ver. 
+          É aí que percebo o quanto me fazes feliz.
+        </p>
+        <p>
+          Obrigado por estares sempre ao meu lado. Nos dias bons, em que tudo corre bem, e sobretudo nos dias maus, em que eu próprio tenho dificuldade em ser fácil. 
+          Tu aguentaste a pressão, os horários, as ausências e o cansaço, e nunca me fizeste sentir que era demais. Muitas vezes só consegui continuar porque sabia que tu estavas lá.
+        </p>
+        <p>
+          Contigo aprendi que o amor é uma construção diária que se vai aprimorando com o passar do tempo, onde cada momento que compartilhamos é único e precioso. 
+          Fizeste de mim uma pessoa melhor, e isso é algo que nunca vou conseguir agradecer o suficiente.
+        </p>
+        <p>
+          Estes três anos foram só o princípio. Quero continuar a construir contigo, a viajar contigo, a crescer contigo, e a tornar cada ano melhor que o anterior.
+        </p>
+        <p>
+          Obrigado por seres a minha casa, a minha calma e a minha melhor companheira.
+        </p>
+        <p>
+          Feliz aniversário de namoro, meu amor. Amo-te hoje mais do que ontem, e menos do que amanhã. 💗
+        </p>
+        <p>
+          "Out of all the people this world has created, with all the roads I could have taken, and all the lives I could have lived, some impossible miracle of timing allowed my story to cross paths with yours. 
+          And if I spend the rest of my life searching for a word greater than lucky, I still don't think it would be enough to explain what you are to me."
+        </p>
+      </div>
+    </div>
 
-  </main>
+  </main>
 
-  <script>
-    // ==========================================
-    // 🎵 LÓGICA DO OVERLAY E ÁUDIO
-    // ==========================================
-    const btnStart = document.getElementById('btn-start');
-    const overlay = document.getElementById('start-overlay');
-    const audio = document.getElementById('bg-music');
+  <script>
+    // ==========================================
+    // 🎵 LÓGICA DO OVERLAY E ÁUDIO
+    // ==========================================
+    const btnStart = document.getElementById('btn-start');
+    const overlay = document.getElementById('start-overlay');
+    const audio = document.getElementById('bg-music');
 
-    btnStart.addEventListener('click', () => {
-      // Tenta tocar a música assim que ocorre a interação tátil
-      audio.play().catch(e => console.log("Erro ao reproduzir áudio:", e));
-      
-      // Esconde o overlay suavemente
-      overlay.style.opacity = '0';
-      overlay.style.visibility = 'hidden';
-      
-      // Inicia a criação dos corações flutuantes apenas após abrir
-      startFloatingHearts();
-      iniciarTemporizador();
-      
-      // Garante que o overlay desaparece da frente dos cliques
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 1000);
-    });
+    btnStart.addEventListener('click', () => {
+      audio.play().catch(e => console.log("Erro ao reproduzir áudio:", e));
+      
+      overlay.style.opacity = '0';
+      overlay.style.visibility = 'hidden';
+      
+      startFloatingHearts();
+      iniciarTemporizador();
+      
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 1000);
+    });
 
-    // ==========================================
-    // 📸 CARROSSEL DE FOTOS (15 fotos)
-    // ==========================================
-    const imagens = [
-      "imagens/foto1.jpg", "imagens/foto2.jpg", "imagens/foto3.jpg",
-      "imagens/foto4.jpg", "imagens/foto5.jpg", "imagens/foto6.jpg",
-      "imagens/foto7.jpg", "imagens/foto8.jpg", "imagens/foto9.jpg",
-      "imagens/foto10.jpg", "imagens/foto11.jpg", "imagens/foto12.jpg",
-      "imagens/foto13.jpg", "imagens/foto14.jpg", "imagens/foto15.jpg"
-    ];
-    
-    let indexAtual = 0;
-    const imgElement = document.getElementById('carousel-img');
-    const counterElement = document.getElementById('photo-counter');
-    let intervaloCarrossel;
+    // ==========================================
+    // 📸 CARROSSEL DE FOTOS (15 fotos)
+    // ==========================================
+    const imagens = [
+      "imagens/foto1.jpg", "imagens/foto2.jpg", "imagens/foto3.jpg",
+      "imagens/foto4.jpg", "imagens/foto5.jpg", "imagens/foto6.jpg",
+      "imagens/foto7.jpg", "imagens/foto8.jpg", "imagens/foto9.jpg",
+      "imagens/foto10.jpg", "imagens/foto11.jpg", "imagens/foto12.jpg",
+      "imagens/foto13.jpg", "imagens/foto14.jpg", "imagens/foto15.jpg"
+    ];
+    
+    let indexAtual = 0;
+    const imgElement = document.getElementById('carousel-img');
+    const counterElement = document.getElementById('photo-counter');
+    let intervaloCarrossel;
 
-    function atualizarImagem() {
-      imgElement.classList.replace('opacity-100', 'opacity-0');
-      setTimeout(() => {
-        imgElement.src = imagens[indexAtual];
-        counterElement.innerText = (indexAtual + 1) + " / " + imagens.length;
-        imgElement.classList.replace('opacity-0', 'opacity-100');
-      }, 400); 
-    }
+    function atualizarImagem() {
+      imgElement.classList.replace('opacity-100', 'opacity-0');
+      setTimeout(() => {
+        imgElement.src = imagens[indexAtual];
+        counterElement.innerText = (indexAtual + 1) + " / " + imagens.length;
+        imgElement.classList.replace('opacity-0', 'opacity-100');
+      }, 400); 
+    }
 
-    function nextImage() {
-      indexAtual = (indexAtual + 1) % imagens.length;
-      atualizarImagem();
-      resetarTemporizador();
-    }
+    function nextImage() {
+      indexAtual = (indexAtual + 1) % imagens.length;
+      atualizarImagem();
+      resetarTemporizador();
+    }
 
-    function prevImage() {
-      indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
-      atualizarImagem();
-      resetarTemporizador();
-    }
+    function prevImage() {
+      indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
+      atualizarImagem();
+      resetarTemporizador();
+    }
 
-    function iniciarTemporizador() {
-      intervaloCarrossel = setInterval(nextImage, 5000);
-    }
+    function iniciarTemporizador() {
+      intervaloCarrossel = setInterval(nextImage, 5000);
+    }
 
-    function resetarTemporizador() {
-      clearInterval(intervaloCarrossel);
-      iniciarTemporizador();
-    }
+    function resetarTemporizador() {
+      clearInterval(intervaloCarrossel);
+      iniciarTemporizador();
+    }
 
-    // ==========================================
-    // 👆 SWIPE NO TELEMÓVEL
-    // ==========================================
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const container = document.getElementById('carousel-container');
+    // ==========================================
+    // 👆 SWIPE NO TELEMÓVEL
+    // ==========================================
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const container = document.getElementById('carousel-container');
 
-    container.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
+    container.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
 
-    container.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, {passive: true});
+    container.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
 
-    function handleSwipe() {
-      const diferenca = touchStartX - touchEndX;
-      if (diferenca > 40) nextImage(); // Desliza p/ esquerda
-      if (diferenca < -40) prevImage(); // Desliza p/ direita
-    }
+    function handleSwipe() {
+      const diferenca = touchStartX - touchEndX;
+      if (diferenca > 40) nextImage();
+      if (diferenca < -40) prevImage();
+    }
 
-    // ==========================================
-    // ⏱️ CONTADOR DE TEMPO (05/Nov/2023)
-    // ==========================================
-    const START_DATE = new Date(2023, 10, 5, 0, 0, 0); // Janeiro = 0, Novembro = 10
+    // ==========================================
+    // ⏱️ CONTADOR DE TEMPO (05/Nov/2023)
+    // ==========================================
+    const START_DATE = new Date(2023, 10, 5, 0, 0, 0);
 
-    function updateCounter() {
-      const now = new Date();
-      let years = now.getFullYear() - START_DATE.getFullYear();
-      let months = now.getMonth() - START_DATE.getMonth();
-      let days = now.getDate() - START_DATE.getDate();
-      let hours = now.getHours() - START_DATE.getHours();
-      let minutes = now.getMinutes() - START_DATE.getMinutes();
-      let seconds = now.getSeconds() - START_DATE.getSeconds();
+    function updateCounter() {
+      const now = new Date();
+      let years = now.getFullYear() - START_DATE.getFullYear();
+      let months = now.getMonth() - START_DATE.getMonth();
+      let days = now.getDate() - START_DATE.getDate();
+      let hours = now.getHours() - START_DATE.getHours();
+      let minutes = now.getMinutes() - START_DATE.getMinutes();
+      let seconds = now.getSeconds() - START_DATE.getSeconds();
 
-      if (seconds < 0) { seconds += 60; minutes--; }
-      if (minutes < 0) { minutes += 60; hours--; }
-      if (hours < 0) { hours += 24; days--; }
-      if (days < 0) {
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
-        months--;
-      }
-      if (months < 0) { months += 12; years--; }
+      if (seconds < 0) { seconds += 60; minutes--; }
+      if (minutes < 0) { minutes += 60; hours--; }
+      if (hours < 0) { hours += 24; days--; }
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+      }
+      if (months < 0) { months += 12; years--; }
 
-      const yLabel = years === 1 ? 'ano' : 'anos';
-      const mLabel = months === 1 ? 'mês' : 'meses';
-      const dLabel = days === 1 ? 'dia' : 'dias';
-      const hLabel = hours === 1 ? 'hora' : 'horas';
-      const minLabel = minutes === 1 ? 'minuto' : 'minutos';
-      const sLabel = seconds === 1 ? 'segundo' : 'segundos';
+      const yLabel = years === 1 ? 'ano' : 'anos';
+      const mLabel = months === 1 ? 'mês' : 'meses';
+      const dLabel = days === 1 ? 'dia' : 'dias';
+      const hLabel = hours === 1 ? 'hora' : 'horas';
+      const minLabel = minutes === 1 ? 'minuto' : 'minutos';
+      const sLabel = seconds === 1 ? 'segundo' : 'segundos';
 
-      document.getElementById('line1').innerHTML = 
-        '<strong class="font-semibold text-white">' + years + '</strong> <span class="text-slate-400">' + yLabel + '</span>, <strong class="font-semibold text-white">' + months + '</strong> <span class="text-slate-400">' + mLabel + '</span>, <strong class="font-semibold text-white">' + days + '</strong> <span class="text-slate-400">' + dLabel + '</span>,';
-      
-      document.getElementById('line2').innerHTML = 
-        '<strong class="font-semibold text-white">' + hours + '</strong> <span class="text-slate-400">' + hLabel + '</span>, <strong class="font-semibold text-white">' + minutes + '</strong> <span class="text-slate-400">' + minLabel + '</span>, <strong class="font-semibold text-white">' + seconds + '</strong> <span class="text-slate-400">' + sLabel + '</span>';
-    }
+      document.getElementById('line1').innerHTML = 
+        '<strong class="font-semibold text-white">' + years + '</strong> <span class="text-slate-400">' + yLabel + '</span>, <strong class="font-semibold text-white">' + months + '</strong> <span class="text-slate-400">' + mLabel + '</span>, <strong class="font-semibold text-white">' + days + '</strong> <span class="text-slate-400">' + dLabel + '</span>,';
+      
+      document.getElementById('line2').innerHTML = 
+        '<strong class="font-semibold text-white">' + hours + '</strong> <span class="text-slate-400">' + hLabel + '</span>, <strong class="font-semibold text-white">' + minutes + '</strong> <span class="text-slate-400">' + minLabel + '</span>, <strong class="font-semibold text-white">' + seconds + '</strong> <span class="text-slate-400">' + sLabel + '</span>';
+    }
 
-    setInterval(updateCounter, 1000);
-    updateCounter();
+    setInterval(updateCounter, 1000);
+    updateCounter();
 
-    // ==========================================
-    // 💖 CORAÇÕES FLUTUANTES (Efeito Subtil)
-    // ==========================================
-    function createHeart() {
-      const heartsContainer = document.getElementById('hearts-container');
-      const heart = document.createElement('span');
-      heart.innerText = '❤️';
-      heart.classList.add('floating-heart');
-      
-      // Posição horizontal aleatória (0 a 100% da largura)
-      heart.style.left = Math.random() * 100 + 'vw';
-      
-      // Duração da animação aleatória (entre 8s e 15s para ser lento e romântico)
-      const duration = Math.random() * 7 + 8;
-      heart.style.animationDuration = duration + 's';
-      
-      heartsContainer.appendChild(heart);
-      
-      // Remove o coração do ecrã depois de acabar a animação
-      setTimeout(() => {
-        heart.remove();
-      }, duration * 1000);
-    }
+    // ==========================================
+    // 💖 CORAÇÕES FLUTUANTES
+    // ==========================================
+    function createHeart() {
+      const heartsContainer = document.getElementById('hearts-container');
+      const heart = document.createElement('span');
+      heart.innerText = '❤️';
+      heart.classList.add('floating-heart');
+      
+      heart.style.left = Math.random() * 100 + 'vw';
+      const duration = Math.random() * 7 + 8;
+      heart.style.animationDuration = duration + 's';
+      
+      heartsContainer.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
 
-    // Função chamada depois de clicar no overlay
-    function startFloatingHearts() {
-      // Cria um coração logo de início
-      createHeart();
-      // Cria um novo coração a cada 2.5 segundos
-      setInterval(createHeart, 2500);
-    }
-  </script>
+    function startFloatingHearts() {
+      createHeart();
+      setInterval(createHeart, 2500);
+    }
+  </script>
 </body>
 </html>
